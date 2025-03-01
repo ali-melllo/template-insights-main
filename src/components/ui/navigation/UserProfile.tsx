@@ -41,10 +41,10 @@ export const UserProfileDesktop = ({
               )}
               aria-hidden="true"
             >
-              ES
+              AE
             </span>
             <span className={cx(isCollapsed ? "hidden" : "block")}>
-              Emma Stone
+            arshiya elias
             </span>
           </span>
         )}

@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Insights",
+  name: "Persian Top Panel",
   url: "https://insights.tremor.so",
   description: "The only reporting and audit dashboard you will ever need.",
   baseLinks: {

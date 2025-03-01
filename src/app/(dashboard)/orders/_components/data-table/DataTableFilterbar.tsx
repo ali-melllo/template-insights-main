@@ -2,8 +2,6 @@
 
 import { Button } from "@/components/Button"
 import { Input } from "@/components/Input"
-import { Label } from "@/components/Label"
-import { Switch } from "@/components/Switch"
 import { useRef, useState } from "react"
 import { useDebouncedCallback } from "use-debounce"
 
@@ -14,11 +12,9 @@ interface FilterBarProps {
   setRegisteredOnly: (checked: boolean) => void
 }
 
-export function Filterbar({
+export function FilterBar({
   globalFilter,
   setGlobalFilter,
-  registeredOnly,
-  setRegisteredOnly,
 }: FilterBarProps) {
   const [searchTerm, setSearchTerm] = useState(globalFilter)
   const searchInputRef = useRef<HTMLInputElement>(null)
@@ -40,7 +36,17 @@ export function Filterbar({
   }
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-6 rounded-lg bg-gray-50/50 p-6 ring-1 ring-gray-200 dark:bg-[#090E1A] dark:ring-gray-800">
+    <div className="flex flex-wrap items-center justify-between gap-6 rounded-lg bg-gray-50/50 px-5 py-2 ring-1 ring-gray-200 dark:bg-[#090E1A] dark:ring-gray-800">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+            Orders List
+          </h1>
+          <p className="text-gray-500 sm:text-sm/6 dark:text-gray-500">
+            Monitor orders and manage your process
+          </p>
+        </div>
+      </div>
       <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-fit">
         <Input
           ref={searchInputRef}
@@ -60,7 +66,7 @@ export function Filterbar({
           </Button>
         )}
       </div>
-      <div className="flex items-center gap-2.5">
+      {/* <div className="flex items-center gap-2.5">
         <Switch
           size="small"
           id="registered"
@@ -73,7 +79,7 @@ export function Filterbar({
         >
           Registered agents only
         </Label>
-      </div>
+      </div> */}
     </div>
   )
 }

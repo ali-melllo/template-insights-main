@@ -1,5 +1,5 @@
-import { columns } from "@/components/ui/data-table/columns"
-import { DataTable } from "@/components/ui/data-table/DataTable"
+import { columns } from "@/app/(dashboard)/orders/_components/data-table/columns"
+import { DataTable } from "@/app/(dashboard)/orders/_components/data-table/DataTable"
 import { usage } from "@/data/data"
 
 export default function Example() {

@@ -22,8 +22,14 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { useState } from "react"
-import { Filterbar } from "./DataTableFilterbar"
+import { FilterBar } from "./DataTableFilterbar"
 import { DataTablePagination } from "./DataTablePagination"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/Tabs";
 
 const fuzzyFilter: FilterFn<any> = (
   row: Row<any>,
@@ -80,7 +86,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
 
   return (
     <div className="space-y-6">
-      <Filterbar
+      <FilterBar
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
         registeredOnly={Boolean(registeredFilterValue)}
@@ -88,6 +94,21 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
           table.getColumn("registered")?.setFilterValue(checked || null)
         }}
       />
+      <Tabs defaultValue="all">
+        <TabsList className="w-full flex justify-between">
+          <TabsTrigger className="font-bold" value="all">All</TabsTrigger>
+          <TabsTrigger className="font-bold" value="quote-request">quote-request</TabsTrigger>
+          <TabsTrigger className="font-bold" value="price-alert">Price alert</TabsTrigger>
+          <TabsTrigger className="font-bold" value="expert-assigned">Expert Assigned</TabsTrigger>
+          <TabsTrigger className="font-bold" value="expert-checkout">Expert Checkout</TabsTrigger>
+          <TabsTrigger className="font-bold" value="in-construction">In Construction</TabsTrigger>
+          <TabsTrigger className="font-bold" value="done">Done</TabsTrigger>
+          <TabsTrigger className="font-bold" value="canceled">Canceled</TabsTrigger>
+          <TabsTrigger className="font-bold" value="suspended">Suspended</TabsTrigger>
+        </TabsList>
+        <TabsContent value="account"></TabsContent>
+      </Tabs>
+
       <div className="relative overflow-hidden overflow-x-auto">
         <Table>
           <TableHead>
