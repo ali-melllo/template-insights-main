@@ -1,7 +1,6 @@
 import { Badge } from "@/components/Badge"
 import { ProgressBar } from "@/components/ProgressBar"
 
-import { KpiEntry } from "@/app/(main)/overview/page"
 
 export type CardProps = {
   title: string
@@ -11,7 +10,7 @@ export type CardProps = {
   ctaDescription: string
   ctaText: string
   ctaLink: string
-  data: KpiEntry[]
+  data: any[]
 }
 
 export function ProgressBarCard({

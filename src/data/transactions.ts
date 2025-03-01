@@ -23401,3 +23401,39 @@ export const transactions: Transaction[] = [
     "country": "Guatemala"
   }
 ];
+
+
+export const experts = [
+  {
+    id: 1,
+    name: "Emily Ross",
+    expertise: "Technology & Software",
+    company: "Lyft",
+    region: "Europe",
+    country: "Greece",
+  },
+  {
+    id: 2,
+    name: "Daniel Green",
+    expertise: "Legal Fees",
+    company: "Walmart",
+    region: "Asia",
+    country: "Malaysia",
+  },
+  {
+    id: 3,
+    name: "Sophia Carter",
+    expertise: "Consulting Fees",
+    company: "Uber",
+    region: "Africa",
+    country: "Uganda",
+  },
+  {
+    id: 4,
+    name: "Liam Johnson",
+    expertise: "Consulting Fees",
+    company: "Microsoft",
+    region: "North America",
+    country: "Guatemala",
+  },
+];

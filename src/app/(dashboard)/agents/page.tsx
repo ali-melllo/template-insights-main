@@ -1,21 +1,14 @@
 "use client"
 import { getColumns } from "@/app/(dashboard)/agents/_components/Columns"
-import { DataTable } from "@/app/(dashboard)/agents/_components/DataTable"
-import { DataTableDrawer } from "@/app/(dashboard)/agents/_components/DataTableDrawer"
-import { Transaction } from "@/data/schema"
-import { transactions } from "@/data/transactions"
-import { Row } from "@tanstack/react-table"
+import { experts } from "@/data/transactions"
 import React from "react"
+import { DataTable } from "./_components/DataTable"
 
 export default function Example() {
-  const [row, setRow] = React.useState<Row<Transaction> | null>(null)
-  const [isOpen, setIsOpen] = React.useState(false)
-  const datas = row?.original
 
   const columns = getColumns({
-    onEditClick: (row) => {
-      setRow(row)
-      setIsOpen(true)
+    onEditClick: () => {
+
     },
   })
 
@@ -26,14 +19,9 @@ export default function Example() {
       </h1>
       <div className="mt-4 sm:mt-6 lg:mt-10">
         <DataTable
-          data={transactions}
+          data={experts}
           columns={columns}
-          onRowClick={(row) => {
-            setRow(row)
-            setIsOpen(true)
-          }}
         />
-        <DataTableDrawer open={isOpen} onOpenChange={setIsOpen} datas={datas} />
       </div>
     </>
   )

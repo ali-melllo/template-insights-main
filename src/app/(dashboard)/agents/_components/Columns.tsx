@@ -1,21 +1,15 @@
-"use client"
-
-import { Badge, BadgeProps } from "@/components/Badge"
 import { Button } from "@/components/Button"
 import { Checkbox } from "@/components/Checkbox"
-import { expense_statuses, Transaction } from "@/data/schema"
-import { formatters } from "@/lib/utils"
 import { ColumnDef, createColumnHelper, Row } from "@tanstack/react-table"
-import { format } from "date-fns"
 import { Ellipsis } from "lucide-react"
 import { DataTableColumnHeader } from "./DataTableColumnHeader"
 
-const columnHelper = createColumnHelper<Transaction>()
+const columnHelper = createColumnHelper<any>()
 
 export const getColumns = ({
   onEditClick,
 }: {
-  onEditClick: (row: Row<Transaction>) => void
+  onEditClick: (row: Row<any>) => void
 }) =>
   [
     columnHelper.display({
@@ -26,8 +20,8 @@ export const getColumns = ({
             table.getIsAllPageRowsSelected()
               ? true
               : table.getIsSomeRowsSelected()
-                ? "indeterminate"
-                : false
+              ? "indeterminate"
+              : false
           }
           onCheckedChange={() => table.toggleAllPageRowsSelected()}
           className="translate-y-0.5"
@@ -49,81 +43,55 @@ export const getColumns = ({
         displayName: "Select",
       },
     }),
-    columnHelper.accessor("transaction_date", {
+    columnHelper.accessor("name", {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Purchased on" />
+        <DataTableColumnHeader column={column} title="Expert Name" />
       ),
-      cell: ({ getValue }) => {
-        const date = getValue()
-        return format(new Date(date), "MMM dd, yyyy 'at' h:mma")
-      },
       enableSorting: true,
       enableHiding: false,
       meta: {
-        className: "tabular-nums",
-        displayName: "Purchased",
-      },
-    }),
-    columnHelper.accessor("expense_status", {
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Status" />
-      ),
-      enableSorting: true,
-      meta: {
         className: "text-left",
-        displayName: "Status",
-      },
-      cell: ({ row }) => {
-        const statusValue = row.getValue("expense_status")
-        const status = expense_statuses.find(
-          (item) => item.value === statusValue,
-        )
-        if (!status) {
-          return statusValue // Fallback to displaying the raw status
-        }
-        return (
-          <Badge variant={status.variant as BadgeProps["variant"]}>
-            {status.label}
-          </Badge>
-        )
+        displayName: "Expert Name",
       },
     }),
-    columnHelper.accessor("merchant", {
+    columnHelper.accessor("expertise", {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Merchant" />
+        <DataTableColumnHeader column={column} title="Field of Expertise" />
       ),
       enableSorting: false,
       meta: {
         className: "text-left",
-        displayName: "Merchant",
+        displayName: "Expertise Field",
       },
-      filterFn: "arrIncludesSome",
     }),
-    columnHelper.accessor("category", {
+    columnHelper.accessor("company", {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Category" />
+        <DataTableColumnHeader column={column} title="Company" />
       ),
       enableSorting: false,
       meta: {
         className: "text-left",
-        displayName: "Category",
+        displayName: "Company",
       },
     }),
-    columnHelper.accessor("amount", {
+    columnHelper.accessor("region", {
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Amount" />
+        <DataTableColumnHeader column={column} title="Region" />
       ),
       enableSorting: true,
       meta: {
-        className: "text-right",
-        displayName: "Amount",
+        className: "text-left",
+        displayName: "Region",
       },
-      cell: ({ getValue }) => {
-        return (
-          <span className="font-medium">
-            {formatters.currency({ number: getValue() })}
-          </span>
-        )
+    }),
+    columnHelper.accessor("country", {
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Country" />
+      ),
+      enableSorting: true,
+      meta: {
+        className: "text-left",
+        displayName: "Country",
       },
     }),
     columnHelper.display({
@@ -150,4 +118,4 @@ export const getColumns = ({
         )
       },
     }),
-  ] as ColumnDef<Transaction>[]
+  ] as ColumnDef<any>[]

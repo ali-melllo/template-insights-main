@@ -28,7 +28,7 @@ import {
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
-  data: TData[]
+  data: any[]
   onRowClick?: (row: Row<TData>) => void
 }
 

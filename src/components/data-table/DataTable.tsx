@@ -25,9 +25,7 @@ import { useState } from "react"
 import { Filterbar } from "./DataTableFilterbar"
 import { DataTablePagination } from "./DataTablePagination"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const fuzzyFilter: FilterFn<any> = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   row: Row<any>,
   columnId: string,
   filterValue: string,

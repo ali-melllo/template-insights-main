@@ -4,12 +4,10 @@ import { Tooltip } from "@/components/Tooltip"
 import { cx, focusRing } from "@/lib/utils"
 import {
   BarChartBig,
-  Compass,
   Factory,
   PanelRightClose,
   PanelRightOpen,
   PersonStanding,
-  Settings2,
   Table2,
 } from "lucide-react"
 import Link from "next/link"
@@ -34,11 +32,11 @@ const navigation = [
     href: siteConfig.baseLinks.serviceTypes,
     icon: Factory,
   },
-  {
-    name: "Settings",
-    href: siteConfig.baseLinks.settings.audit,
-    icon: Settings2,
-  },
+  // {
+  //   name: "Settings",
+  //   href: siteConfig.baseLinks.settings.audit,
+  //   icon: Settings2,
+  // },
 ] as const
 
 interface SidebarProps {
@@ -158,7 +156,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                 ))}
               </ul>
             </div>
-            <div>
+            {/* <div>
               <span
                 aria-hidden={isCollapsed}
                 className={cx(
@@ -211,7 +209,7 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
                   )}
                 </li>
               </ul>
-            </div>
+            </div> */}
           </nav>
           <div className="mt-auto border-t border-gray-200 pt-3 dark:border-gray-800">
             <UserProfileDesktop isCollapsed={isCollapsed} />

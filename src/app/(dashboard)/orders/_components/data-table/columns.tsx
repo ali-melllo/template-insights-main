@@ -5,7 +5,7 @@ import { ProgressCircle } from "@/components/ProgressCircle"
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "./DataTableColumnHeader"
 import { Button } from "@/components/Button"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/Drawer"
+import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerTrigger } from "@/components/Drawer"
 import { CircleCheck, Ellipsis, Mail, Package, Phone, User } from "lucide-react"
 import { cx } from "@/lib/utils"
 
@@ -313,6 +313,21 @@ export const columns = [
                 </ul>
               </>
             </div>
+
+            <DrawerFooter className="flex inset-x-0 w-full absolute bottom-0 p-5 !justify-between items-center">
+              <DrawerClose>
+                <Button variant="secondary">
+                  Close
+                </Button>
+              </DrawerClose>
+              <Button>
+                {row.original.status === "quote-request" ? "User is Alerted for exact Price" :
+                  row.original.status === "price-alert" ? "Assign order To Abbas" :
+                    row.original.status === "expert-assigned" ? "Send Abbas to Confirm order" :
+                      row.original.status === "expert-checkout" ? "Start construction" :
+                        row.original.status === "in-construction" ? "Construction is Done" : "Show Details"}
+              </Button>
+            </DrawerFooter>
           </DrawerContent>
         </Drawer>
       </>

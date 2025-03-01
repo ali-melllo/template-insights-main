@@ -1,8 +1,5 @@
-import { Label } from "@/components/Label"
-import { Textarea } from "@/components/Textarea"
 import { cx } from "@/lib/utils"
 import { CircleCheck } from "lucide-react"
-import Image from "next/image"
 
 const activity = [
   {
