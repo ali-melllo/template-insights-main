@@ -1,3 +1,4 @@
+import OverviewExternal from "./_components/external"
 import Header from "./_components/Header"
 import { TransactionChart } from "./_components/TransactionChart"
 
@@ -5,6 +6,7 @@ export default function Page() {
   return (
     <>
       <Header />
+
       <section className="my-8">
         <div className="space-y-12">
           <TransactionChart
@@ -35,6 +37,9 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      <OverviewExternal />
+
     </>
   )
 }

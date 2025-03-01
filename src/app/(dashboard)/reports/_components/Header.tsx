@@ -15,6 +15,7 @@ import { FilterCountry } from "./FilterCountry"
 import { FilterDate } from "./FilterDate"
 import { FilterExpenseStatus } from "./FilterExpenseStatus"
 import { DEFAULT_RANGE } from "./dateRanges"
+import { DownloadIcon } from "lucide-react"
 
 function FormattedDate() {
   const [dateString, setDateString] = React.useState<string>("")
@@ -61,7 +62,7 @@ export default function Header() {
       className={cx(
         "sticky top-16 z-50 -my-6 flex flex-col gap-6 bg-white py-6 md:flex-row md:flex-wrap md:items-center md:justify-between lg:top-0 dark:bg-gray-925",
         scrolled &&
-          "border-b border-gray-200 transition-all dark:border-gray-900",
+        "border-b border-gray-200 transition-all dark:border-gray-900",
       )}
     >
       <div className="space-y-1">
@@ -104,6 +105,14 @@ export default function Header() {
           onClick={handleResetFilters}
         >
           Reset
+        </Button>
+        <Button
+          variant="light"
+          className="h-fit flex justify-center items-center gap-3 dark:border-gray-800"
+          onClick={handleResetFilters}
+        >
+          <DownloadIcon className="size-5"/>
+          Export 
         </Button>
       </div>
     </section>

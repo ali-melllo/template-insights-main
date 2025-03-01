@@ -166,9 +166,9 @@ function FilterCountry() {
             )}
           >
             Selected Locations
-            <span className="flex shrink-0 items-center justify-center rounded bg-gray-200 px-1 tabular-nums text-gray-900 dark:bg-gray-800 dark:text-gray-50">
+            {/* <span className="flex shrink-0 items-center justify-center rounded bg-gray-200 px-1 tabular-nums text-gray-900 dark:bg-gray-800 dark:text-gray-50">
               {selectedCountries.length}
-            </span>
+            </span> */}
           </Button>
         </PopoverTrigger>
         <PopoverContent

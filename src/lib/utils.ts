@@ -93,3 +93,16 @@ export const formatters: { [key: string]: any } = {
     return `${formattedNumber}M`
   },
 }
+
+
+
+export const percentageFormatter = (number: number, decimals = 1) => {
+  const formattedNumber = new Intl.NumberFormat("en-US", {
+    style: "percent",
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(number)
+  const symbol = number > 0 && number !== Infinity ? "+" : ""
+
+  return `${symbol}${formattedNumber}`
+}

@@ -5,8 +5,10 @@ import { cx, focusRing } from "@/lib/utils"
 import {
   BarChartBig,
   Compass,
+  Factory,
   PanelRightClose,
   PanelRightOpen,
+  PersonStanding,
   Settings2,
   Table2,
 } from "lucide-react"
@@ -16,11 +18,21 @@ import MobileSidebar from "./MobileSidebar"
 import { UserProfileDesktop, UserProfileMobile } from "./UserProfile"
 
 const navigation = [
-  { name: "Reports", href: siteConfig.baseLinks.reports, icon: BarChartBig },
+  { name: "Overview", href: siteConfig.baseLinks.reports, icon: BarChartBig },
   {
-    name: "Transactions",
+    name: "Orders List",
     href: siteConfig.baseLinks.transactions,
     icon: Table2,
+  },
+  {
+    name: "Agents",
+    href: siteConfig.baseLinks.agents,
+    icon: PersonStanding,
+  },
+  {
+    name: "Service Types",
+    href: siteConfig.baseLinks.serviceTypes,
+    icon: Factory,
   },
   {
     name: "Settings",
@@ -73,12 +85,12 @@ export function Sidebar({ isCollapsed, toggleSidebar }: SidebarProps) {
               </button>
               <span
                 className={cx(
-                  "text-sm font-semibold text-gray-900 transition-opacity dark:text-gray-50",
+                  "font-semibold text-gray-900 transition-opacity dark:text-gray-50",
                   isCollapsed ? "opacity-0" : "opacity-100",
                 )}
               >
                 <a aria-label="Home Link" href="/">
-                  Acme Corp.
+                  Persian Top Panel
                 </a>
               </span>
             </div>

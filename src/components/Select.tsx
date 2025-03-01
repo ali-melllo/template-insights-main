@@ -1,15 +1,12 @@
-// Tremor Raw Select [v0.0.2]
+// Custom Select [v0.0.0]
 
 import * as SelectPrimitives from "@radix-ui/react-select"
-import {
-  RiArrowDownSLine,
-  RiArrowUpSLine,
-  RiCheckLine,
-  RiExpandUpDownLine,
-} from "@remixicon/react"
+import { RiArrowDownSLine, RiArrowUpSLine, RiCheckLine } from "@remixicon/react"
+import { format } from "date-fns"
 import React from "react"
 
 import { cx, focusInput, hasErrorInput } from "@/lib/utils"
+import { DateRange } from "react-day-picker"
 
 const Select = SelectPrimitives.Root
 Select.displayName = "Select"
@@ -23,7 +20,7 @@ SelectValue.displayName = "SelectValue"
 const selectTriggerStyles = [
   cx(
     // base
-    "group/trigger flex w-full select-none items-center justify-between gap-2 truncate rounded-md border px-3 py-2 shadow-sm outline-none transition text-base sm:text-sm",
+    "group/trigger flex w-full select-none items-center justify-between gap-2 truncate rounded-md border px-3 py-2 shadow-sm outline-none transition sm:text-sm",
     // border color
     "border-gray-300 dark:border-gray-800",
     // text color
@@ -31,7 +28,7 @@ const selectTriggerStyles = [
     // placeholder
     "data-[placeholder]:text-gray-500 data-[placeholder]:dark:text-gray-500",
     // background color
-    "bg-white dark:bg-[#090E1A]",
+    "bg-white dark:bg-gray-950",
     // hover
     "hover:bg-gray-50 hover:dark:bg-gray-950/50",
     // disabled
@@ -57,15 +54,14 @@ const SelectTrigger = React.forwardRef<
         hasError ? hasErrorInput : "",
         className,
       )}
-      tremor-id="tremor-raw"
       {...props}
     >
       <span className="truncate">{children}</span>
       <SelectPrimitives.Icon asChild>
-        <RiExpandUpDownLine
+        <RiArrowDownSLine
           className={cx(
             // base
-            "size-4 shrink-0",
+            "-mr-1 size-5 shrink-0",
             // text color
             "text-gray-400 dark:text-gray-600",
             // disabled
@@ -140,7 +136,7 @@ const SelectContent = React.forwardRef<
           // heights
           "max-h-[--radix-select-content-available-height]",
           // background color
-          "bg-white dark:bg-[#090E1A]",
+          "bg-white dark:bg-gray-950",
           // text color
           "text-gray-900 dark:text-gray-50",
           // border color
@@ -162,7 +158,7 @@ const SelectContent = React.forwardRef<
           className={cx(
             "p-1",
             position === "popper" &&
-            "h-[var(--radix-select-trigger-height)] w-full min-w-[calc(var(--radix-select-trigger-width))]",
+              "h-[var(--radix-select-trigger-height)] w-full min-w-[calc(var(--radix-select-trigger-width))]",
           )}
         >
           {children}
@@ -231,6 +227,58 @@ const SelectItem = React.forwardRef<
 
 SelectItem.displayName = "SelectItem"
 
+const SelectItemPeriod = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitives.Item>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitives.Item> & {
+    period?: DateRange | undefined
+  }
+>(({ className, children, period, ...props }, forwardedRef) => {
+  return (
+    <SelectPrimitives.Item
+      ref={forwardedRef}
+      className={cx(
+        // base
+        "relative flex cursor-pointer items-center rounded py-2 pl-8 pr-3 outline-none transition-colors data-[state=checked]:font-semibold sm:text-sm",
+        // text color
+        "text-gray-900 dark:text-gray-50",
+        // disabled
+        "data-[disabled]:pointer-events-none data-[disabled]:text-gray-400 data-[disabled]:hover:bg-none dark:data-[disabled]:text-gray-600",
+        // focus
+        "focus-visible:bg-gray-100 focus-visible:dark:bg-gray-900",
+        // hover
+        "hover:bg-gray-100 hover:dark:bg-gray-900",
+        className,
+      )}
+      {...props}
+    >
+      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+        <SelectPrimitives.ItemIndicator>
+          <RiCheckLine
+            className="size-5 shrink-0 text-gray-800 dark:text-gray-200"
+            aria-hidden="true"
+          />
+        </SelectPrimitives.ItemIndicator>
+      </span>
+      <div className="flex w-full items-center">
+        {/* adapt width accordingly if you use longer names for periods */}
+        <span className="w-40 sm:w-32">
+          <SelectPrimitives.ItemText>{children}</SelectPrimitives.ItemText>
+        </span>
+        <span>
+          {period?.from && period?.to && (
+            <span className="whitespace-nowrap font-normal text-gray-400">
+              {format(period.from, "MMM d, yyyy")} –{" "}
+              {format(period.to, "MMM d, yyyy")}
+            </span>
+          )}
+        </span>
+      </div>
+    </SelectPrimitives.Item>
+  )
+})
+
+SelectItemPeriod.displayName = "SelectItemPeriod"
+
 const SelectSeparator = React.forwardRef<
   React.ElementRef<typeof SelectPrimitives.Separator>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitives.Separator>
@@ -256,8 +304,8 @@ export {
   SelectGroup,
   SelectGroupLabel,
   SelectItem,
+  SelectItemPeriod,
   SelectSeparator,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 }
-

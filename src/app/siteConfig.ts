@@ -4,7 +4,9 @@ export const siteConfig = {
   description: "The only reporting and audit dashboard you will ever need.",
   baseLinks: {
     reports: "/reports",
-    transactions: "/transactions",
+    transactions: "/orders",
+    agents: "/agents",
+    serviceTypes: "/details",
     settings: {
       audit: "/settings/audit",
       users: "/settings/users",
